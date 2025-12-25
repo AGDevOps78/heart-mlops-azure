@@ -37,7 +37,7 @@ jobs:
 
       - name: Run training script
         run: |
-          python src/train.py --data_path data/heart.csv
+          python src/train.py --data_path data/processed/heart_cleaned.csv
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
