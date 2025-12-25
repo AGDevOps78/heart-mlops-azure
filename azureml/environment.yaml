@@ -1,0 +1,12 @@
+name: heart-env
+dependencies:
+  - python=3.8
+  - pip:
+      - pandas
+      - numpy
+      - scikit-learn
+      - seaborn
+      - matplotlib
+      - mlflow
+channels:
+  - conda-forge

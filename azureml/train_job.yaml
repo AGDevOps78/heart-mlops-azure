@@ -1,0 +1,14 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+type: command
+
+code: ../
+command: >
+  python src/train.py
+environment: azureml:heart-env:1
+compute: azureml:cpu-cluster
+
+inputs:
+  training_data: ../data/processed/heart_clean.csv
+
+experiment_name: heart-training
+description: Train heart disease model
