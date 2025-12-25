@@ -1,0 +1,18 @@
+name: heart-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - mltable
+      - azureml-fsspec
+      - joblib
+      - pyarrow
+      - pandas
+      - numpy
+      - scikit-learn
+      - mlflow
+      - azureml-mlflow
+      - matplotlib
+      - seaborn

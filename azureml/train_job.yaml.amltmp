@@ -4,11 +4,23 @@ type: command
 code: ../
 command: >
   python src/train.py
-environment: azureml:heart-env:1
-compute: azureml:cpu-cluster
+  --experiment-name heart-disease-training
+  --data_path ${{inputs.heart_data}}
+
+environment: azureml:heart-env@latest
+
+compute: azureml:ag-aiml-compute
+
+experiment_name: heart-disease-training
+description: Train Logistic Regression and Random Forest models for heart disease prediction
 
 inputs:
-  training_data: ../data/processed/heart_clean.csv
+  heart_data:
+    type: uri_file
+    path: azureml:heart-csv:1
 
-experiment_name: heart-training
-description: Train heart disease model
+
+outputs:
+  best_model:
+    mode: upload
+    path: azureml://datastores/workspaceblobstore/paths/heart-model/
