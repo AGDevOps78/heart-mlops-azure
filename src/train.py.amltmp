@@ -2,6 +2,7 @@ import argparse
 import pandas as pd
 import mlflow
 import joblib
+import os
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -32,7 +33,7 @@ def load_data(data_path: str) -> pd.DataFrame:
 
 def train_models(X_train, y_train):
     models = {
-        "log_reg": LogisticRegression(max_iter=500),
+        "log_reg": LogisticRegression(max_iter=2000),
         "rf": RandomForestClassifier(n_estimators=200, random_state=42)
     }
     for name, model in models.items():
@@ -50,11 +51,14 @@ def evaluate(models, X_test, y_test):
         print(f"{name} accuracy: {acc}")
     return scores
 
-def evaluate_and_plot(models, X_test, y_test):
+def evaluate_and_plot(models, X_test, y_test, args):
     """
     Evaluate models and generate ROC, PR curves, and confusion matrix.
     """
     scores = {}
+    # Create the folder if it doesn't exist
+    output_dir = Path("outputs")
+    output_dir.mkdir(exist_ok=True)
 
     for name, model in models.items():
         preds = model.predict(X_test)
@@ -85,10 +89,14 @@ def evaluate_and_plot(models, X_test, y_test):
             plt.ylabel("True Positive Rate")
             plt.title(f"ROC Curve - {name}")
             plt.legend(loc="lower right")
-            roc_path = f"roc_curve_{name}.png"
+            roc_file = f"roc_curve_{name}.png"
+            #roc_path = os.path.join(args.artifacts,roc_file)
+            roc_path = output_dir / roc_file
+            #plt.savefig(roc_file)
             plt.savefig(roc_path)
             plt.close()
-            mlflow.log_artifact(roc_path)
+            #mlflow.log_figure(fig, roc_file)
+           
 
         # -------------------------
         # Plot Precision-Recall Curve
@@ -100,20 +108,27 @@ def evaluate_and_plot(models, X_test, y_test):
             plt.xlabel("Recall")
             plt.ylabel("Precision")
             plt.title(f"Precision-Recall Curve - {name}")
-            pr_path = f"pr_curve_{name}.png"
+            pr_name = f"pr_curve_{name}.png"
+            #pr_path = os.path.join(args.artifacts,pr_name)
+            pr_path = output_dir / pr_name
+            #plt.savefig(pr_name)
             plt.savefig(pr_path)
             plt.close()
-            mlflow.log_artifact(pr_path)
+            #mlflow.log_figure(fig, pr_name)
+            
 
         # -------------------------
         # Plot Confusion Matrix
         # -------------------------
         disp = ConfusionMatrixDisplay.from_predictions(y_test, preds)
         plt.title(f"Confusion Matrix - {name}")
-        cm_path = f"confusion_matrix_{name}.png"
+        cm_name = f"confusion_matrix_{name}.png"
+        #cm_path = os.path.join(args.artifacts,cm_name)
+        #plt.savefig(cm_name)
+        cm_path = output_dir / cm_name
         plt.savefig(cm_path)
         plt.close()
-        mlflow.log_artifact(cm_path)
+        #mlflow.log_figure(fig, cm_name)
 
     return scores
 
@@ -171,7 +186,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_path", type=str, required=True)
     parser.add_argument("--experiment-name", type=str)
+    # NEW: output folder for artifacts (ROC curve, confusion matrix, etc.)
+    parser.add_argument("--artifacts", type=str)
+
+
     args = parser.parse_args()
+
+    #mlflow.set_tracking_uri("azureml://")
 
     with mlflow.start_run():
      df = load_data(args.data_path)
@@ -179,16 +200,18 @@ def main():
      y = df["target"]
 
      X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
+      X, y, test_size=0.2, random_state=42
       )
 
      models = train_models(X_train, y_train)
-     #_ = evaluate_and_plot(models, X_test, y_test)
+     _ = evaluate_and_plot(models, X_test, y_test, args)
      scores = evaluate_with_crossval(models, X, y, cv_splits=5)
      for name, metrics in scores.items():
         mlflow.log_metric(f"{name}_f1", metrics["f1"])
-
-
+        mlflow.log_metric(f"{name}_precision", metrics["precision"])
+        mlflow.log_metric(f"{name}_recall", metrics["recall"])
+        mlflow.log_metric(f"{name}_accuracy", metrics["accuracy"])
+        mlflow.log_metric(f"{name}_ROC_", metrics["roc_auc"])
      best_model_name = save_best_model(models, scores)
      mlflow.log_param("best_model", best_model_name)
 

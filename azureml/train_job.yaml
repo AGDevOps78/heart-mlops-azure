@@ -6,6 +6,7 @@ command: >
   python src/train.py
   --experiment-name heart-disease-training
   --data_path ${{inputs.heart_data}}
+  --artifacts ${{outputs.artifacts}}
 
 environment: azureml:heart-env@latest
 
@@ -22,5 +23,12 @@ inputs:
 
 outputs:
   best_model:
+    type: uri_folder
     mode: upload
     path: azureml://datastores/workspaceblobstore/paths/heart-model/
+
+  artifacts:
+    type: uri_folder
+    mode: upload
+    path: azureml://datastores/workspaceblobstore/paths/heart-model/
+
