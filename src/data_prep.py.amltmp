@@ -7,6 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 
+base_dir = Path(__file__).resolve().parent.parent
 
 
 def load_heart_data():
@@ -18,7 +19,6 @@ def load_heart_data():
 
 def save_raw_data(df):
     """Save the raw dataset to data/raw/heart.csv."""
-    base_dir = Path(__file__).resolve().parent.parent
     output_path = base_dir / "data" / "raw" / "heart.csv"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False)
@@ -70,7 +70,6 @@ def preprocess_data(df):
 
 def save_processed_data(df):
     """Save cleaned & processed dataset to data/processed/heart_processed.csv."""
-    base_dir = Path(__file__).resolve().parent.parent
     output_path = base_dir / "data" / "processed" / "heart_cleaned.csv"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False)

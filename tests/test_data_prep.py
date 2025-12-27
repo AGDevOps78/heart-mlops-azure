@@ -41,8 +41,8 @@ def test_save_raw_data(tmp_path, monkeypatch):
     df = make_dummy_df()
     # Patch base_dir to temporary directory
     monkeypatch.setattr(
-        "src.data_prep.Path",
-        lambda *args, **kwargs: tmp_path
+        "src.data_prep.base_dir",
+        tmp_path
     )
     save_raw_data(df)
     expected = tmp_path / "data" / "raw" / "heart.csv"
@@ -53,8 +53,8 @@ def test_save_processed_data(tmp_path, monkeypatch):
     df = make_dummy_df()
     processed = preprocess_data(df)
     monkeypatch.setattr(
-        "src.data_prep.Path",
-        lambda *args, **kwargs: tmp_path
+        "src.data_prep.base_dir",
+        tmp_path
     )
     save_processed_data(processed)
     expected = tmp_path / "data" / "processed" / "heart_cleaned.csv"
