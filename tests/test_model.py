@@ -16,19 +16,24 @@ def test_train_model_returns_fitted_model():
     X = df[["age", "chol"]]
     y = df["target"]
 
-    model = train_models(X, y)
+    models = train_models(X, y)   # now expecting a dict of models
 
-    assert hasattr(model, "predict")
-    preds = model.predict(X)
-    assert len(preds) == len(y)
+    # Ensure both models are present
+    assert "log_reg" in models
+    assert "rf" in models
+
+    for name, model in models.items():
+        assert hasattr(model, "predict")
+        preds = model.predict(X)
+        assert len(preds) == len(y)
 
 def test_evaluate_model_returns_valid_f1():
     df = _make_small_dataset()
     X = df[["age", "chol"]]
     y = df["target"]
 
-    model = train_models(X, y)
-    metrics = evaluate(model, X, y)
-
-    assert "f1" in metrics
-    assert 0.0 <= metrics["f1"] <= 1.0
+    models = train_models(X, y)
+    for name, model in models.items():
+        metrics = evaluate(model, X, y)
+        assert "acc" in metrics
+        assert 0.0 <= metrics["acc"] <= 1.0
