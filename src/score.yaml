@@ -3,7 +3,7 @@ name: fastapi-deploy
 endpoint_name: heart-endpoint
 
 model:
-  path: ./best_model.pkl
+  path: ./outputs/best_model.pkl
 
 environment:
   name: fastapi-env

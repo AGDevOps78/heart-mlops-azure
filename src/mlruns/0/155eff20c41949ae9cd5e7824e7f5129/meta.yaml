@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/155eff20c41949ae9cd5e7824e7f5129/artifacts
+end_time: 1766835110929
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 155eff20c41949ae9cd5e7824e7f5129
+run_name: nebulous-stork-503
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766835099265
+status: 3
+tags: []
+user_id: anshg
