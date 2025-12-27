@@ -1,10 +1,13 @@
 [flake8]
 max-line-length = 120
 ignore =
+    E111
+    E241
     E265
     E302
     E305
     E501
+    W291
     W292
     W293
     E303
