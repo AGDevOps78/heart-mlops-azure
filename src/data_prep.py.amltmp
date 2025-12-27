@@ -27,7 +27,6 @@ def save_raw_data(df):
 
 
 def preprocess_data(df):
-    def preprocess_data(df):
     """Clean NaNs, keep raw numeric/categorical values, no scaling, no encoding."""
     df = df.copy()
 
