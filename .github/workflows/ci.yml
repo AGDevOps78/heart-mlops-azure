@@ -23,19 +23,26 @@ jobs:
 
       - name: Verify environment
         run: |
+          conda activate heart-env
           conda info
           conda list
-
+          
       - name: Lint with flake8
+        shell: bash -l {0}
         run: |
+          conda activate heart-env
           flake8 src tests
 
       - name: Run unit tests
+        shell: bash -l {0}
         run: |
+          conda activate heart-env
           pytest -q
 
       - name: Run training script
+        shell: bash -l {0}
         run: |
+          conda activate heart-env
           python src/train.py --data_path data/processed/heart_cleaned.csv
 
       - name: Upload artifacts
