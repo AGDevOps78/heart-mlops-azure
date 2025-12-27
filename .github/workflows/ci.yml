@@ -22,6 +22,7 @@ jobs:
           auto-activate-base: false
 
       - name: Verify environment
+        shell: bash -l {0}
         run: |
           conda activate heart-env
           conda info
