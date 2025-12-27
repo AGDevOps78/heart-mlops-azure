@@ -27,43 +27,49 @@ def save_raw_data(df):
 
 
 def preprocess_data(df):
-    """Clean NaNs, encode categoricals, normalize numericals."""
+    def preprocess_data(df):
+    """Clean NaNs, keep raw numeric/categorical values, no scaling, no encoding."""
     df = df.copy()
+
     # 1. Remove rows with missing values
     df = df.dropna()
+
     # 2. Identify feature types
     numeric_features = df.select_dtypes(include=["int64", "float64"]).columns.tolist()
     categorical_features = df.select_dtypes(include=["object", "category"]).columns.tolist()
-    # Remove target from feature lists if present
+
+    # Remove target from feature lists
     if "target" in numeric_features:
         numeric_features.remove("target")
     if "target" in categorical_features:
         categorical_features.remove("target")
-    # 3. Build preprocessing pipeline
+
+    # 3. Basic imputation only (NO SCALER, NO ENCODER)
     numeric_transformer = Pipeline(steps=[
-        ("imputer", SimpleImputer(strategy="median")),
-        ("scaler", StandardScaler())
+        ("imputer", SimpleImputer(strategy="median"))
     ])
 
     categorical_transformer = Pipeline(steps=[
-        ("imputer", SimpleImputer(strategy="most_frequent")),
-        ("encoder", OneHotEncoder(handle_unknown="ignore"))
+        ("imputer", SimpleImputer(strategy="most_frequent"))
     ])
 
     preprocessor = ColumnTransformer(
-    transformers=[
-        ("num", numeric_transformer, numeric_features),
-        ("cat", categorical_transformer, categorical_features)
-    ]
+        transformers=[
+            ("num", numeric_transformer, numeric_features),
+            ("cat", categorical_transformer, categorical_features)
+        ],
+        remainder="passthrough"   # keep everything else as-is
     )
+
     # 4. Apply transformations
     X = df.drop("target", axis=1)
     y = df["target"]
+
     X_processed = preprocessor.fit_transform(X)
+
     # Convert back to DataFrame
-    X_processed_df = pd.DataFrame(
-        X_processed.toarray() if hasattr(X_processed, "toarray") else X_processed
-    )
+    X_processed_df = pd.DataFrame(X_processed, columns=numeric_features + categorical_features)
+
     processed_df = pd.concat([X_processed_df, y.reset_index(drop=True)], axis=1)
     return processed_df
 
