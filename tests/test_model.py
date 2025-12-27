@@ -1,11 +1,3 @@
-'''
-running from inside Azure ML the path fails adding these two lines help
-
-
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-'''
 
 import pandas as pd
 from src.train import train_models, evaluate

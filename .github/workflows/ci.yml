@@ -38,6 +38,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda activate heart-env
+          export PYTHONPATH="$PYTHONPATH:$(pwd)"
           pytest -q
 
       - name: Run training script
