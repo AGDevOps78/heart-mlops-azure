@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/anshg/gitrepo/heart-mlops-azure/notebooks/mlruns/404796771500288961/28a64a5ce001461e9579b07160608880/artifacts
+end_time: 1766833339977
+entry_point_name: ''
+experiment_id: '404796771500288961'
+lifecycle_stage: active
+run_id: 28a64a5ce001461e9579b07160608880
+run_name: logreg
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766833335070
+status: 3
+tags: []
+user_id: anshg

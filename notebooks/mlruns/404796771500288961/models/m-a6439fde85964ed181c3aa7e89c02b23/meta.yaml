@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Users/anshg/gitrepo/heart-mlops-azure/notebooks/mlruns/404796771500288961/models/m-a6439fde85964ed181c3aa7e89c02b23/artifacts
+creation_timestamp: 1766833340091
+experiment_id: '404796771500288961'
+last_updated_timestamp: 1766833344169
+model_id: m-a6439fde85964ed181c3aa7e89c02b23
+model_type: null
+name: rf_model
+source_run_id: e84bc96022524a70ab04dc9128d12ccd
+status: 2
+status_message: null

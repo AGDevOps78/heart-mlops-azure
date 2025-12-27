@@ -1,0 +1,10 @@
+artifact_location: file:///c:/Users/anshg/gitrepo/heart-mlops-azure/notebooks/mlruns/404796771500288961/models/m-6652a26e12064e409763209a98073049/artifacts
+creation_timestamp: 1766833571830
+experiment_id: '404796771500288961'
+last_updated_timestamp: 1766833576089
+model_id: m-6652a26e12064e409763209a98073049
+model_type: null
+name: logreg_model
+source_run_id: 892b47af8c8940d081f25751fb2f99a0
+status: 2
+status_message: null

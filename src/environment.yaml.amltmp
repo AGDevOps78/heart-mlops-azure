@@ -1,9 +1,0 @@
-name: fastapi-env
-dependencies:
-  - python=3.10
-  - pip:
-      - fastapi
-      - uvicorn
-      - joblib
-      - numpy
-      - scikit-learn
