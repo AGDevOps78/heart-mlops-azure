@@ -33,7 +33,6 @@ def test_evaluate_model_returns_valid_f1():
     y = df["target"]
 
     models = train_models(X, y)
-    for name, model in models.items():
-        metrics = evaluate(model, X, y)
-        assert "acc" in metrics
-        assert 0.0 <= metrics["acc"] <= 1.0
+    scores = evaluate(models, X, y)
+    for name, acc in scores.items():
+        assert 0.0 <= acc <= 1.0
