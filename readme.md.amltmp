@@ -9,6 +9,18 @@ src/
   placed under/data/raw/heart_cleaned.csv
   
 
+4. For Azure ML Ops Pipeline:
+
+    1. Create/update datasource version
+    (azureml_py38) azureuser@ag-aiml-compute:~/cloudfiles/code/Users/v_2agho/heart-mlops-azure$ az ml data create \
+    --name heart-csv \
+    --version 2 \
+    --path data/processed/heart_cleaned.csv \
+    --type uri_file \
+    --workspace-name ag-aiml \
+    --resource-group rg-ml-aimllearn
+    2. Trigger job
+    (azureml_py38) azureuser@ag-aiml-compute:~/cloudfiles/code/Users/v_2agho/heart-mlops-azure$ az ml job         create --file azureml/train_job.yaml
 
 8. Creating and registering Azure ML Container Registry
 
