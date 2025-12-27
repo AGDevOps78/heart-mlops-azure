@@ -1,0 +1,10 @@
+name: fastapi-env-v6
+dependencies:
+  - python=3.10
+  - pip:
+      - azureml-defaults
+      - fastapi
+      - pydantic
+      - joblib
+      - numpy
+      - scikit-learn

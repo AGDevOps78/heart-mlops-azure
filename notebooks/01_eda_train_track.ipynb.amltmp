@@ -582,22 +582,26 @@
     {
       "cell_type": "code",
       "source": [
-        "ws = Workspace.from_config()\n",
-        "datastore = ws.get_default_datastore()\n",
+        "from azure.ai.ml import MLClient\n",
+        "from azure.identity import DefaultAzureCredential\n",
         "\n",
-        "print(datastore)"
+        "# Connect to the workspace\n",
+        "ml_client = MLClient.from_config(credential=DefaultAzureCredential())\n",
+        "\n",
+        "print(\"Workspace name:\", ml_client.workspace_name)\n",
+        "print(\"Resource group:\", ml_client.resource_group_name)\n"
       ],
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
-          "text": "{\n  \"name\": \"workspaceblobstore\",\n  \"container_name\": \"azureml-blobstore-961117c1-b38c-4213-8d01-532e7a2dffcd\",\n  \"account_name\": \"agaiml0867784842\",\n  \"protocol\": \"https\",\n  \"endpoint\": \"core.windows.net\"\n}\n"
+          "text": "Workspace name: ag-aiml\nResource group: rg-ml-aimllearn\n"
         }
       ],
-      "execution_count": 54,
+      "execution_count": 2,
       "metadata": {
         "gather": {
-          "logged": 1766661024629
+          "logged": 1766749817706
         }
       }
     },

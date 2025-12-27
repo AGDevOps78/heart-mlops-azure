@@ -1,16 +1,18 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
 name: fastapi-deploy
 endpoint_name: heart-endpoint
+
 model:
   path: ./best_model.pkl
 
 environment:
-  conda_file: requirements.txt
-  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+  name: fastapi-env
+  image: mcr.microsoft.com/azureml/minimal-ubuntu20.04-py38-cpu-inference:latest
+  conda_file: environment.yml
 
 code_configuration:
   code: .
-  scoring_script: app.py
+  scoring_script: score.py
 
 instance_type: Standard_DS2_v2
 instance_count: 1
