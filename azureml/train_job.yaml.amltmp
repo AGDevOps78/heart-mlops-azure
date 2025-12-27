@@ -18,7 +18,7 @@ description: Train Logistic Regression and Random Forest models for heart diseas
 inputs:
   heart_data:
     type: uri_file
-    path: azureml:heart-csv:2
+    path: azureml:heart-csv:1
 
 
 outputs:

@@ -12,7 +12,7 @@ src/
 4. For Azure ML Ops Pipeline:
 
     1. Create/update datasource version
-    (azureml_py38) azureuser@ag-aiml-compute:~/cloudfiles/code/Users/v_2agho/heart-mlops-azure$ az ml data create \
+    $ az ml data create \
     --name heart-csv \
     --version 2 \
     --path data/processed/heart_cleaned.csv \
@@ -20,7 +20,7 @@ src/
     --workspace-name ag-aiml \
     --resource-group rg-ml-aimllearn
     2. Trigger job
-    (azureml_py38) azureuser@ag-aiml-compute:~/cloudfiles/code/Users/v_2agho/heart-mlops-azure$ az ml job         create --file azureml/train_job.yaml
+    $ az ml job         create --file azureml/train_job.yaml
 
 8. Creating and registering Azure ML Container Registry
 
@@ -58,7 +58,7 @@ az ml online-endpoint invoke \\\
   --name heart-endpoint \\\
   --request-file test.json
 
-(azureml_py38) azureuser@ag-aiml-compute:~/cloudfiles/code/Users/v_2agho/heart-mlops-azure/tests$ az ml online-endpoint invoke \
+az ml online-endpoint invoke \
   --name heart-endpoint \
   --deployment fastapi-deploy \
   --request-file test.json
