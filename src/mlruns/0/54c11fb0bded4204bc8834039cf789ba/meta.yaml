@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/54c11fb0bded4204bc8834039cf789ba/artifacts
+end_time: 1766894578983
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 54c11fb0bded4204bc8834039cf789ba
+run_name: debonair-tern-382
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766894568414
+status: 3
+tags: []
+user_id: anshg

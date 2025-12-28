@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/395848d95fd34f7f8437902df465fcb9/artifacts
+end_time: 1766894527513
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 395848d95fd34f7f8437902df465fcb9
+run_name: luxuriant-ape-988
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766894526355
+status: 4
+tags: []
+user_id: anshg

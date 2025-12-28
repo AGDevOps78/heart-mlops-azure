@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/9f540a0e7bb047498c3e83f5fc5fc549/artifacts
+end_time: 1766895058670
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9f540a0e7bb047498c3e83f5fc5fc549
+run_name: sedate-pig-998
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766895047745
+status: 3
+tags: []
+user_id: anshg

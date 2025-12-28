@@ -92,10 +92,10 @@ def evaluate_and_plot(models, X_test, y_test, args):
             roc_file = f"roc_curve_{name}.png"
             #roc_path = os.path.join(args.artifacts,roc_file)
             roc_path = output_dir / roc_file
-            #plt.savefig(roc_file)
+            plt.savefig(roc_file)
             plt.savefig(roc_path)
             plt.close()
-            #mlflow.log_figure(fig, roc_file)
+            mlflow.log_artifact(roc_file)
            
 
         # -------------------------
@@ -111,10 +111,10 @@ def evaluate_and_plot(models, X_test, y_test, args):
             pr_name = f"pr_curve_{name}.png"
             #pr_path = os.path.join(args.artifacts,pr_name)
             pr_path = output_dir / pr_name
-            #plt.savefig(pr_name)
+            plt.savefig(pr_name)
             plt.savefig(pr_path)
             plt.close()
-            #mlflow.log_figure(fig, pr_name)
+            mlflow.log_artifact(pr_name)
             
 
         # -------------------------
@@ -124,11 +124,11 @@ def evaluate_and_plot(models, X_test, y_test, args):
         plt.title(f"Confusion Matrix - {name}")
         cm_name = f"confusion_matrix_{name}.png"
         #cm_path = os.path.join(args.artifacts,cm_name)
-        #plt.savefig(cm_name)
+        plt.savefig(cm_name)
         cm_path = output_dir / cm_name
         plt.savefig(cm_path)
         plt.close()
-        #mlflow.log_figure(fig, cm_name)
+        mlflow.log_artifact(cm_name)
 
     return scores
 
@@ -213,7 +213,7 @@ def main():
         mlflow.log_metric(f"{name}_accuracy", metrics["accuracy"])
         mlflow.log_metric(f"{name}_ROC_", metrics["roc_auc"])
      best_model_name = save_best_model(models, scores)
-     mlflow.log_param("best_model", best_model_name)
+     mlflow.log_param("best_model as per F1 score from Cross Validation", best_model_name)
 
 
 

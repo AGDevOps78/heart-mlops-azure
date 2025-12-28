@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/0feeed9c1a794ce09e4c9e9d6432fdf0/artifacts
+end_time: 1766895103778
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0feeed9c1a794ce09e4c9e9d6432fdf0
+run_name: righteous-fly-156
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766895093176
+status: 3
+tags: []
+user_id: anshg

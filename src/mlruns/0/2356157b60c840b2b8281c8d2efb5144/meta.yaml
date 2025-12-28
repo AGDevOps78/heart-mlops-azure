@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/anshg/gitrepo/heart-mlops-azure/src/mlruns/0/2356157b60c840b2b8281c8d2efb5144/artifacts
+end_time: 1766894811288
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2356157b60c840b2b8281c8d2efb5144
+run_name: blushing-snipe-518
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1766894800252
+status: 3
+tags: []
+user_id: anshg
