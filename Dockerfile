@@ -4,8 +4,8 @@ FROM python:3.10-slim
 WORKDIR /k8s
 
 # Copy code
-COPY app.py .
-COPY outputs ./outputs
+COPY /k8s/app.py .
+COPY /k8s/outputs ./outputs
 
 # Install dependencies
 RUN pip install fastapi uvicorn joblib numpy scikit-learn prometheus-client
